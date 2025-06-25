@@ -12,3 +12,19 @@ class Input {
     return input;
   }
 }
+
+class Data {
+  static var data = [
+    {"name": "셔츠", "price": 45000},
+    {"name": "원피스", "price": 30000},
+    {"name": "반팔티", "price": 35000},
+    {"name": "반바지", "price": 38000},
+    {"name": "양말", "price": 5000},
+
+    {"name": "Shirt", "price": 45000},
+    {"name": "One piece", "price": 30000},
+    {"name": "T shirt", "price": 35000},
+    {"name": "Shorts", "price": 38000},
+    {"name": "Socks", "price": 5000},
+  ];
+}

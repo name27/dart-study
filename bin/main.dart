@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'model/product.dart';
 import 'model/shoppingMall.dart';
-import 'input.dart';
+import 'util/utils.dart';
 
 void main() {
   ShoppingMall shoppingMall = ShoppingMall(
@@ -9,7 +9,7 @@ void main() {
     cartList: [],
     cartTotalPrice: 0,
   );
-  for (var d in data) {
+  for (var d in Data.data) {
     shoppingMall.productList.add(Product.fromMap(d));
   }
   var isEnd = false;
@@ -38,17 +38,3 @@ void main() {
     }
   }
 }
-
-var data = [
-  {"name": "셔츠", "price": 45000},
-  {"name": "원피스", "price": 30000},
-  {"name": "반팔티", "price": 35000},
-  {"name": "반바지", "price": 38000},
-  {"name": "양말", "price": 5000},
-
-  {"name": "Shirt", "price": 45000},
-  {"name": "One piece", "price": 30000},
-  {"name": "T shirt", "price": 35000},
-  {"name": "Shorts", "price": 38000},
-  {"name": "Socks", "price": 5000},
-];

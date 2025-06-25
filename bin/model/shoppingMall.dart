@@ -1,5 +1,5 @@
 import 'product.dart';
-import '../input.dart';
+import '../util/utils.dart';
 
 class ShoppingMall {
   List<Product> productList;
