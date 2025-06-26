@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'model/product.dart';
 import 'model/shoppingMall.dart';
 import 'util/utils.dart';
@@ -29,9 +28,6 @@ void main() {
         break;
       case '6': //[6] 장바구니초기화
         shoppingMall.resetCart(shoppingMall.cartList);
-        break;
-      case '0': //[0] 장바구니 목록 보기
-        shoppingMall.showCartList(shoppingMall.cartList);
         break;
       default:
         print("지원하지 않는 기능입니다! 다시 시도해주세요..");
