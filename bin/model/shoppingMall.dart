@@ -51,7 +51,7 @@ class ShoppingMall {
     }
   }
 
-  //[3] 장바구니에 담은 상품의 총 가격을 출력하는 메서드
+  //[3] 장바구니에 담은 상품, 갯수, 총 가격을 출력하는 메서드
   showTotal(List<Product> cartList) {
     if (cartList.isEmpty) {
       print("장바구니에 담긴 상품이 없습니다.\n");

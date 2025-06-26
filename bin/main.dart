@@ -20,7 +20,7 @@ void main() {
       case '2': //[2] 장바구니에 담기
         shoppingMall.addToCart(shoppingMall.productList);
         break;
-      case '3': //[3] 장바구니 담긴 상품 총 가격 보기
+      case '3': //[3] 장바구니 담긴 상품, 갯수. 총 가격 보기
         shoppingMall.showTotal(shoppingMall.cartList);
         break;
       case '4': //[4] 프로그램 종료
