@@ -27,4 +27,5 @@ class Data {
     {"name": "Shorts", "price": 38000},
     {"name": "Socks", "price": 5000},
   ];
+  static var adminKey = "1234";
 }

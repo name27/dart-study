@@ -1,6 +1,7 @@
 import 'model/product.dart';
-import 'model/shoppingMall.dart';
+import 'model/shopping_mall.dart';
 import 'util/utils.dart';
+import 'util/admin.dart';
 
 void main() {
   ShoppingMall shoppingMall = ShoppingMall(
@@ -8,6 +9,7 @@ void main() {
     cartList: [],
     cartTotalPrice: 0,
   );
+  Admin admin = Admin();
   for (var d in Data.data) {
     shoppingMall.productList.add(Product.fromMap(d));
   }
@@ -28,6 +30,10 @@ void main() {
         break;
       case '6': //[6] 장바구니초기화
         shoppingMall.resetCart(shoppingMall.cartList);
+        break;
+      //[0] 관리자 모드
+      case '0':
+        shoppingMall.productList = admin.adminMode(shoppingMall.productList);
         break;
       default:
         print("지원하지 않는 기능입니다! 다시 시도해주세요..");
