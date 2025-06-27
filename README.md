@@ -51,14 +51,16 @@
 
 ---
 ## 파일구조
+```
 /lib
 ├── model/
-│   ├── product.dart           # 상품 관련 데이터 모델 정의
-│   └── shopping_mall.dart     # 쇼핑몰 관련 데이터 모델 정의
+│   ├── product.dart         # 상품 관련 데이터 모델 정의
+│   └── shopping_mall.dart   # 쇼핑몰 관련 데이터 모델 정의
 │
 ├── util/
-│   ├── admin.dart             # 관리자 관련 유틸 함수 또는 설정
-│   └── utils.dart             # 데이터, 자주 쓰는 함수
+│   ├── admin.dart           # 관리자 관련 유틸 함수 또는 설정
+│   └── utils.dart           # 데이터 처리, 자주 쓰는 공통 함수
+```
 
 ## 학습 기록
 
