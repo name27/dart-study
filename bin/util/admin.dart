@@ -2,107 +2,109 @@ import 'utils.dart';
 import '../model/product.dart';
 
 class Admin {
-  //[0] 관리자 모드
+  // [0] 관리자 모드 진입
   List<Product> adminMode(List<Product> productList) {
-    String? adminKey = Input.inputMessage("adminkey: ");
-    if (Data.adminKey != adminKey) {
+    final adminKey = _prompt("adminkey: ");
+    if (adminKey != Data.adminKey) {
       print("입력값이 올바르지 않아요!!\n");
       return productList;
     }
 
     print("[ 관리자 모드 ]\n");
-    String menu = "[0] 관리자 모드 종료 [1] 상품 추가 [2] 상품 삭제 [3] 가격 변경\n";
+    const menu = "[0] 관리자 모드 종료 [1] 상품 추가 [2] 상품 삭제 [3] 가격 변경\n";
 
     while (true) {
-      switch (Input.inputMessage(menu)) {
+      switch (_prompt(menu)) {
         case '1':
-          addProduct(productList);
+          _addProduct(productList);
           break;
         case '2':
-          deleteProduct(productList);
+          _deleteProduct(productList);
           break;
         case '3':
-          editPrice(productList);
+          _editPrice(productList);
           break;
         case '0':
           print("관리자 모드를 종료합니다");
           return productList;
         default:
-          print("지원하지 않는 기능입니다! 다시 시도해주세요..");
+          print("지원하지 않는 기능입니다! 다시 시도해주세요..\n");
       }
     }
   }
 
-  void addProduct(List<Product> productList) {
-    String? name = Input.inputMessage("추가할 상품명을 입력해 주세요!\n상품명: ");
-    if (name == null || name.isEmpty) {
-      print("입력값이 올바르지 않아요!!\n");
-      return;
-    }
+  void _addProduct(List<Product> productList) {
+    final name = _prompt("추가할 상품명을 입력해 주세요!\n상품명: ");
+    if (_isInvalid(name)) return;
 
-    if (productList.any((product) => product.name == name)) {
+    if (productList.any((p) => p.name == name)) {
       print("같은 상품명이 이미 있어요!\n");
       return;
     }
 
-    String? priceStr = Input.inputMessage("가격을 입력해 주세요!\n가격: ");
-    if (priceStr == null) {
-      print("입력값이 올바르지 않아요!!\n");
-      return;
-    }
+    final priceStr = _prompt("가격을 입력해 주세요!\n가격: ");
+    final price = _parseInt(priceStr);
+    if (price == null) return;
 
-    try {
-      int price = int.parse(priceStr);
-      productList.add(Product(name: name, price: price));
-      print("상품이 추가되었습니다!\n");
-    } catch (e) {
-      print("입력값이 올바르지 않아요!!\n");
-    }
+    productList.add(Product(name: name!, price: price));
+    print("상품이 추가되었습니다!\n");
   }
 
-  void deleteProduct(List<Product> productList) {
-    String? name = Input.inputMessage("삭제할 상품명을 입력해 주세요!\n상품명: ");
-    if (name == null || name.isEmpty) {
-      print("입력값이 올바르지 않아요!!\n");
-      return;
-    }
+  void _deleteProduct(List<Product> productList) {
+    final name = _prompt("삭제할 상품명을 입력해 주세요!\n상품명: ");
+    if (_isInvalid(name)) return;
 
-    if (productList.any((product) => product.name == name)) {
-      productList.removeWhere((product) => product.name == name);
+    final before = productList.length;
+    productList.removeWhere((p) => p.name == name);
+    final after = productList.length;
+
+    if (before != after) {
       print("상품이 삭제되었습니다!\n");
     } else {
       print("해당 상품이 존재하지 않습니다!\n");
     }
   }
 
-  void editPrice(List<Product> productList) {
-    String? name = Input.inputMessage("가격을 변경할 상품명을 입력 해주세요!\n상품명: ");
-    if (name == null || name.isEmpty) {
-      print("입력값이 올바르지 않아요!\n");
-      return;
-    }
+  void _editPrice(List<Product> productList) {
+    final name = _prompt("가격을 변경할 상품명을 입력 해주세요!\n상품명: ");
+    if (_isInvalid(name)) return;
 
-    int index = productList.indexWhere((product) => product.name == name);
+    final index = productList.indexWhere((p) => p.name == name);
     if (index == -1) {
       print("해당 상품이 존재하지 않습니다!\n");
       return;
     }
 
-    String? priceStr = Input.inputMessage("변경할 가격을 입력 해주세요!\n가격: ");
-    if (priceStr == null || priceStr.isEmpty) {
-      print("입력값이 올바르지 않아요!\n");
-      return;
-    }
+    final priceStr = _prompt("변경할 가격을 입력 해주세요!\n가격: ");
+    final newPrice = _parseInt(priceStr);
+    if (newPrice == null) return;
 
+    productList[index].price = newPrice;
+    print("$name 의 상품 가격이 $newPrice 원으로 변경되었습니다!\n");
+  }
+
+  String? _prompt(String message) => Input.inputMessage(message);
+
+  bool _isInvalid(String? input) {
+    if (input == null || input.trim().isEmpty) {
+      print("입력값이 올바르지 않아요!!\n");
+      return true;
+    }
+    return false;
+  }
+
+  int? _parseInt(String? input) {
     try {
-      int newPrice = int.parse(priceStr);
-      productList[index].price = newPrice;
-      print("$name 의 상품 가격이 $newPrice 으로 변경되었습니다!\n");
-    } catch (e) {
-      print("입력값이 올바르지 않아요!\n");
+      return int.parse(input ?? '');
+    } catch (_) {
+      print("입력값이 올바르지 않아요!!\n");
+      return null;
     }
   }
 }
+
+// 위 코드는 AI가 아래 코드 리팩토링한 코드
+// 아래 코드는 일일히 제가 짠 코드
 
 // import 'utils.dart';
 // import '../model/product.dart';

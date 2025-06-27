@@ -20,16 +20,16 @@ void main() {
         shoppingMall.showProducts();
         break;
       case '2': //[2] 장바구니에 담기
-        shoppingMall.addToCart(shoppingMall.productList);
+        shoppingMall.addToCart();
         break;
       case '3': //[3] 장바구니 담긴 상품, 갯수. 총 가격 보기
-        shoppingMall.showTotal(shoppingMall.cartList);
+        shoppingMall.showTotal();
         break;
       case '4': //[4] 프로그램 종료
         isEnd = shoppingMall.endFun();
         break;
       case '6': //[6] 장바구니초기화
-        shoppingMall.resetCart(shoppingMall.cartList);
+        shoppingMall.resetCart();
         break;
       //[0] 관리자 모드
       case '0':
