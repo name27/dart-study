@@ -1,7 +1,7 @@
-import 'model/product.dart';
-import 'model/shopping_mall.dart';
-import 'util/utils.dart';
-import 'util/admin.dart';
+import 'package:dart_study/model/product.dart';
+import 'package:dart_study/model/shopping_mall.dart';
+import 'package:dart_study/util/utils.dart';
+import 'package:dart_study/util/admin.dart';
 
 void main() {
   ShoppingMall shoppingMall = ShoppingMall(
